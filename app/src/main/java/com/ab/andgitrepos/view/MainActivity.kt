@@ -1,5 +1,6 @@
 package com.ab.andgitrepos.view
 
+import android.app.ProgressDialog
 import android.arch.lifecycle.LifecycleRegistry
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
@@ -47,6 +48,7 @@ class MainActivity : AppCompatActivity() {
 
         // fetch repos
         mViewModel.getAndroidRepos()
+        progress_bar.visibility = View.VISIBLE
     }
 
     /**
@@ -65,6 +67,7 @@ class MainActivity : AppCompatActivity() {
      * shows repos on the ui
      */
     private fun updatePostDetails(repos: List<Repo>?) {
+        progress_bar.visibility = View.GONE
         if (repos == null) {
             return
         }

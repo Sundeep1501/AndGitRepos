@@ -13,6 +13,7 @@ import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
+import kotlin.collections.ArrayList
 
 /**
  * Created by sunde_000 on 28/02/2018.
@@ -25,7 +26,6 @@ open class MainViewModel(application: Application) : AndroidViewModel(applicatio
 
     init {
         (application as MyApplication).appComponent.inject(this)
-        mRepos.value = null
     }
 
     fun getAndroidRepos() {
@@ -48,6 +48,7 @@ open class MainViewModel(application: Application) : AndroidViewModel(applicatio
                             mRepos.value = repos.items
                         },
                         { error ->
+                            mRepos.value = ArrayList()
                             handleAPIFailure(error)
                         }
                 )
