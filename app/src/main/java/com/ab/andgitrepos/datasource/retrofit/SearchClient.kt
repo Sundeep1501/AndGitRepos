@@ -1,8 +1,11 @@
 package com.ab.andgitrepos.datasource.retrofit
 
 import com.ab.andgitrepos.datasource.retrofit.model.Repo
+import com.ab.andgitrepos.datasource.retrofit.model.SearchResponse
 import io.reactivex.Observable
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
+import retrofit2.http.Headers
 import retrofit2.http.QueryMap
 
 /**
@@ -16,5 +19,5 @@ interface SearchClient {
      *
      */
     @GET("search/repositories")
-    fun searchRepositories(@QueryMap searchQueryMap: Map<String, String>): Observable<Repo>
+    fun searchRepositories(@QueryMap(encoded = true) searchQueryMap: Map<String, String>): Observable<SearchResponse>
 }
