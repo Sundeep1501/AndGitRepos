@@ -18,6 +18,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     private val lifecycleRegistry = LifecycleRegistry(this)
+
+    // view model for this view
     lateinit var mViewModel: MainViewModel
 
     // recycler view adapter
@@ -32,13 +34,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         // init recyclerview adapter
-        mRecyclerViewAdapter = RecyclerViewAdapter(this, ArrayList(), mListItemClickListener)
+        mRecyclerViewAdapter = RecyclerViewAdapter(ArrayList(), mListItemClickListener)
 
         // setup recycler view
         recycler_view.layoutManager = LinearLayoutManager(this)
         recycler_view.adapter = mRecyclerViewAdapter
         recycler_view.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
 
+        // init view model for this view
         mViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         mViewModel.mRepos.observe(this, Observer<List<Repo>> { post -> updatePostDetails(post) })
 

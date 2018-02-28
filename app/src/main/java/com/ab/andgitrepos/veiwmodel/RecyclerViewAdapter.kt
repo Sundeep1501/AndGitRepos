@@ -1,6 +1,5 @@
 package com.ab.andgitrepos.veiwmodel
 
-import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -9,8 +8,10 @@ import android.widget.TextView
 import com.ab.andgitrepos.R
 import com.ab.andgitrepos.datasource.retrofit.model.Repo
 
-
-class RecyclerViewAdapter(private val context: Context, private val mRepos: MutableList<Repo>, private val onClickListener: View.OnClickListener)
+/**
+ * Adapter class builds the repo view to show repositories
+ */
+class RecyclerViewAdapter(private val mRepos: MutableList<Repo>, private val onClickListener: View.OnClickListener)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -27,15 +28,6 @@ class RecyclerViewAdapter(private val context: Context, private val mRepos: Muta
         rvHolder.forkCount.text = repo.forks_count.toString()
         rvHolder.language.text = repo.language
     }
-
-    fun getItem(position: Int): Repo {
-        return mRepos[position]
-    }
-
-    fun getIndex(song: Repo): Int {
-        return mRepos.indexOf(song)
-    }
-
 
     override fun getItemCount(): Int {
         return mRepos.size
