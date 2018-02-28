@@ -1,7 +1,8 @@
-package com.ab.andgitrepos
+package com.ab.andgitrepos.view
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.ab.andgitrepos.R
 
 class MainActivity : AppCompatActivity() {
 
