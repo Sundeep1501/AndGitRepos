@@ -13,6 +13,7 @@ import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
+import kotlin.collections.ArrayList
 
 /**
  * Created by sunde_000 on 28/02/2018.
@@ -25,11 +26,10 @@ open class MainViewModel(application: Application) : AndroidViewModel(applicatio
 
     init {
         (application as MyApplication).appComponent.inject(this)
-        mRepos.value = null
     }
 
     fun getAndroidRepos() {
-        // get two days back date
+        // get yesterday's date
         val cal = Calendar.getInstance()
         cal.add(Calendar.DATE, -1)
         val format = YYYYMMDD_FORMAT.format(cal.time)
@@ -48,6 +48,7 @@ open class MainViewModel(application: Application) : AndroidViewModel(applicatio
                             mRepos.value = repos.items
                         },
                         { error ->
+                            mRepos.value = ArrayList()
                             handleAPIFailure(error)
                         }
                 )
