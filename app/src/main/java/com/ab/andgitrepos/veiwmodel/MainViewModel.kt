@@ -29,7 +29,7 @@ open class MainViewModel(application: Application) : AndroidViewModel(applicatio
     }
 
     fun getAndroidRepos() {
-        // get two days back date
+        // get yesterday's date
         val cal = Calendar.getInstance()
         cal.add(Calendar.DATE, -1)
         val format = YYYYMMDD_FORMAT.format(cal.time)
