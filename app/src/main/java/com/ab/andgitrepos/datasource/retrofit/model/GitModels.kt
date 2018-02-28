@@ -9,3 +9,5 @@ data class Repo(val id: Long, val name: String, val full_name: String, val descr
 data class Owner(val id: Long)
 
 data class License(val key: String, val name: String, val url: String)
+
+data class SearchResponse(val items: List<Repo>)

@@ -21,7 +21,7 @@ open class MainViewModel(application: Application) : AndroidViewModel(applicatio
 
     @Inject lateinit var mSearchClient: SearchClient
 
-    val mRepos: MutableLiveData<Repo> = MutableLiveData()
+    val mRepos: MutableLiveData<List<Repo>> = MutableLiveData()
 
     init {
         (application as MyApplication).appComponent.inject(this)
@@ -31,8 +31,8 @@ open class MainViewModel(application: Application) : AndroidViewModel(applicatio
     fun getAndroidRepos() {
         // get two days back date
         val cal = Calendar.getInstance()
-        cal.add(Calendar.DATE, -2)
-        val format = YYYYMMDD_FORMAT.format(cal)
+        cal.add(Calendar.DATE, -1)
+        val format = YYYYMMDD_FORMAT.format(cal.time)
 
         // prepare query map
         val searchQueryMap = HashMap<String, String>()
@@ -45,7 +45,7 @@ open class MainViewModel(application: Application) : AndroidViewModel(applicatio
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         { repos ->
-                            mRepos.value = repos
+                            mRepos.value = repos.items
                         },
                         { error ->
                             handleAPIFailure(error)
@@ -62,6 +62,6 @@ open class MainViewModel(application: Application) : AndroidViewModel(applicatio
     }
 
     companion object {
-        val YYYYMMDD_FORMAT = SimpleDateFormat("YYYY-MM-DD", Locale.ENGLISH)
+        val YYYYMMDD_FORMAT = SimpleDateFormat("YYYY-MM-dd", Locale.ENGLISH)
     }
 }
