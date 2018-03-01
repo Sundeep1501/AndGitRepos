@@ -10,16 +10,6 @@
     android:paddingTop="8dp"
     tools:context="com.ab.andgitrepos.view.DetailsActivity">
 
-
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/fullname"
         style="@style/Base.TextAppearance.AppCompat.Large"
@@ -42,6 +32,43 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fullname" />
 
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/flexboxLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:alignContent="stretch"
+        app:alignItems="stretch"
+        app:flexWrap="wrap"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/description">
+
+        <TextView
+            android:id="@+id/topic1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/topic2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/topic3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/topic4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/topic5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.flexbox.FlexboxLayout>
+
     <TextView
         android:id="@+id/imageView4"
         android:layout_width="wrap_content"
@@ -51,13 +78,12 @@
         android:gravity="center"
         android:text="Watch: "
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description" />
+        app:layout_constraintTop_toBottomOf="@+id/flexboxLayout" />
 
     <TextView
         android:id="@+id/watch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="12"
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="@+id/imageView4"
         app:layout_constraintStart_toEndOf="@+id/imageView4"
@@ -73,13 +99,12 @@
         android:gravity="center"
         android:text="Star: "
         app:layout_constraintStart_toEndOf="@+id/watch"
-        app:layout_constraintTop_toBottomOf="@+id/description" />
+        app:layout_constraintTop_toBottomOf="@+id/flexboxLayout" />
 
     <TextView
         android:id="@+id/stars"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="1234"
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="@+id/imageView5"
         app:layout_constraintStart_toEndOf="@+id/imageView5"
@@ -95,13 +120,12 @@
         android:gravity="center"
         android:text="Fork: "
         app:layout_constraintStart_toEndOf="@+id/stars"
-        app:layout_constraintTop_toBottomOf="@+id/description" />
+        app:layout_constraintTop_toBottomOf="@+id/flexboxLayout" />
 
     <TextView
         android:id="@+id/forks"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="14"
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="@+id/imageView6"
         app:layout_constraintStart_toEndOf="@+id/imageView6"
@@ -144,7 +168,6 @@
         android:id="@+id/open_issues"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="3"
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="@+id/textView10"
         app:layout_constraintStart_toEndOf="@+id/textView10"
@@ -174,7 +197,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:autoLink="web"
-        android:text="TextView"
         app:layout_constraintBottom_toBottomOf="@+id/textView12"
         app:layout_constraintStart_toEndOf="@+id/textView12"
         app:layout_constraintTop_toTopOf="@+id/textView12" />

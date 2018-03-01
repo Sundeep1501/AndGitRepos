@@ -52,9 +52,32 @@ class DetailsActivity : BaseActivity() {
     }
 
     private fun updateTopics(topics: List<String>?) {
-        if (topics === null || topics.isEmpty()) {
+        if (topics == null || topics.isEmpty()) {
             return
         }
+        for (i in 0..4)
+            if (topics.size > i) {
+                val s = topics[i]
+                when (i) {
+                    0 -> {
+                        topic1.text = s
+                    }
+                    1 -> {
+                        topic2.text = s
+                    }
+                    2 -> {
+                        topic3.text = s
+                    }
+                    3 -> {
+                        topic4.text = s
+                    }
+                    4 -> {
+                        topic5.text = s
+                    }
+                }
+            } else {
+                break
+            }
         Toast.makeText(this, topics.toString(), Toast.LENGTH_SHORT).show()
     }
 
