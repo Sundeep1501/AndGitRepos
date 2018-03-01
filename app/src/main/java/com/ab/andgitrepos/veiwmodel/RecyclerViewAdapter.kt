@@ -33,6 +33,13 @@ class RecyclerViewAdapter(private val mRepos: MutableList<Repo>, private val onC
         return mRepos.size
     }
 
+    fun getItem(position: Int): Repo? {
+        if (position < 0 || position > mRepos.size - 1) {
+            return null
+        }
+        return mRepos[position]
+    }
+
     fun addItems(newList: List<Repo>) {
         mRepos.addAll(newList)
     }

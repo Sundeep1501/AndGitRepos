@@ -1,11 +1,8 @@
 package com.ab.andgitrepos.view
 
-import android.app.ProgressDialog
-import android.arch.lifecycle.LifecycleRegistry
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
@@ -16,19 +13,10 @@ import com.ab.andgitrepos.veiwmodel.MainViewModel
 import com.ab.andgitrepos.veiwmodel.RecyclerViewAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
-
-    private val lifecycleRegistry = LifecycleRegistry(this)
-
-    // view model for this view
-    lateinit var mViewModel: MainViewModel
+class MainActivity : BaseActivity() {
 
     // recycler view adapter
-    lateinit var mRecyclerViewAdapter: RecyclerViewAdapter
-
-    override fun getLifecycle(): LifecycleRegistry {
-        return lifecycleRegistry
-    }
+    private lateinit var mRecyclerViewAdapter: RecyclerViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,10 +32,12 @@ class MainActivity : AppCompatActivity() {
 
         // init view model for this view
         mViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-        mViewModel.mRepos.observe(this, Observer<List<Repo>> { post -> updatePostDetails(post) })
+
+        // observe for changes in repo data variable
+        (mViewModel as MainViewModel).mRepos.observe(this, Observer<List<Repo>> { post -> updatePostDetails(post) })
 
         // fetch repos
-        mViewModel.getAndroidRepos()
+        (mViewModel as MainViewModel).getAndroidRepos()
         progress_bar.visibility = View.VISIBLE
     }
 
@@ -58,7 +48,13 @@ class MainActivity : AppCompatActivity() {
         when (view?.id) {
             R.id.root -> {
                 val position = recycler_view.getChildAdapterPosition(view)
-                Toast.makeText(applicationContext, " pos:" + position, Toast.LENGTH_SHORT).show()
+                val repo = mRecyclerViewAdapter.getItem(position)
+                if (repo != null) {
+                    // show details of the repo
+                    startActivity(DetailsActivity.getIntent(this, repo))
+                } else {
+                    Toast.makeText(this, getString(R.string.repo_na), Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }

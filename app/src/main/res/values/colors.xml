@@ -5,4 +5,5 @@
     <color name="colorAccent">#FF4081</color>
     <color name="grey">#586069</color>
     <color name="language_kotlin">#F18E33</color>
+    <color name="topic_bg">#f1f8ff</color>
 </resources>

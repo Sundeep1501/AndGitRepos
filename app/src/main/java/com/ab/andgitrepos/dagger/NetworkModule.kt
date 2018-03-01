@@ -1,7 +1,7 @@
 package com.ab.andgitrepos.dagger
 
 import com.ab.andgitrepos.BuildConfig
-import com.ab.andgitrepos.datasource.retrofit.SearchClient
+import com.ab.andgitrepos.datasource.retrofit.GitApiClient
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import dagger.Module
 import dagger.Provides
@@ -53,8 +53,8 @@ class NetworkModule(val mBaseUrl: String) {
 
     @Provides
     @Singleton
-    fun providerSearchClient(retrofit: Retrofit): SearchClient {
-        return retrofit.create(SearchClient::class.java)
+    fun providerSearchClient(retrofit: Retrofit): GitApiClient {
+        return retrofit.create(GitApiClient::class.java)
     }
 
 }
