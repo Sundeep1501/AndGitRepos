@@ -127,6 +127,13 @@ class DetailsActivity : BaseActivity() {
         language.text = repo.language
         open_issues.text = repo.open_issues_count.toString()
         clone_url.text = repo.clone_url
+        val name = repo.license?.name
+        if (name.isNullOrEmpty()) {
+            license.text = "NA"
+        } else {
+            license.text = name
+        }
+
     }
 
     /**

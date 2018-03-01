@@ -68,7 +68,7 @@
         android:id="@+id/imageView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:drawableStart="@drawable/ic_watch_black_24dp"
         android:gravity="center"
         android:text="Watch: "
@@ -89,7 +89,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:drawableStart="@drawable/ic_star_black_24dp"
         android:gravity="center"
         android:text="Star: "
@@ -110,7 +110,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:drawableStart="@drawable/ic_fork_black_24dp"
         android:gravity="center"
         android:text="Fork: "
@@ -132,7 +132,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:drawableStart="@drawable/ic_lang_black_24dp"
-        android:drawableTint="@color/language_kotlin"
         android:gravity="center"
         android:text="Language: "
         app:layout_constraintStart_toStartOf="parent"
@@ -169,30 +168,22 @@
         app:layout_constraintTop_toTopOf="@+id/textView10" />
 
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="4dp"
-        android:background="@android:color/darker_gray"
-        app:layout_constraintTop_toBottomOf="@id/textView10" />
-
     <TextView
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="Clone URL"
         android:textColor="@android:color/black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view" />
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <TextView
         android:id="@+id/clone_url"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:autoLink="web"
-        android:text="Heloo"
+        android:text=""
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
@@ -200,9 +191,27 @@
         android:id="@+id/contributors_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/clone_url" />
+
+    <TextView
+        android:id="@+id/textview13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="License"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contributors_layout" />
+
+    <TextView
+        android:id="@+id/license"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textview13" />
 
 
 </android.support.constraint.ConstraintLayout>
