@@ -20,7 +20,7 @@ import kotlin.collections.ArrayList
 /**
  * Created by sunde_000 on 28/02/2018.
  */
-open class MainViewModel(application: Application) : AndroidViewModel(application) {
+class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     @Inject lateinit var mGitApiClient: GitApiClient
 

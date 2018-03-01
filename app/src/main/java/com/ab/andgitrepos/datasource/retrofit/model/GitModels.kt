@@ -116,3 +116,8 @@ data class License(val key: String, val name: String, val url: String?) : Parcel
  * repo search response model
  */
 data class SearchResponse(val items: List<Repo>)
+
+/**
+ * Repo's topics response model
+ */
+data class RepoTopicsResponse(val names: List<String>)

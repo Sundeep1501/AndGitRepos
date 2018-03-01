@@ -1,5 +1,6 @@
 package com.ab.andgitrepos.dagger
 
+import com.ab.andgitrepos.veiwmodel.DetailsViewModel
 import com.ab.andgitrepos.veiwmodel.MainViewModel
 import dagger.Component
 import javax.inject.Singleton
@@ -10,5 +11,6 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = [(NetworkModule::class)])
 interface ApplicationComponent {
-    fun inject(viewModel:MainViewModel)
+    fun inject(viewModel: MainViewModel)
+    fun inject(viewModel: DetailsViewModel)
 }

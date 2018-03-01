@@ -1,11 +1,14 @@
 package com.ab.andgitrepos.view
 
+import android.arch.lifecycle.Observer
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import com.ab.andgitrepos.R
 import com.ab.andgitrepos.datasource.retrofit.model.Repo
+import com.ab.andgitrepos.veiwmodel.DetailsViewModel
 import kotlinx.android.synthetic.main.activity_details.*
 
 class DetailsActivity : BaseActivity() {
@@ -28,6 +31,9 @@ class DetailsActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
 
+        // init view model for this view
+        mViewModel = ViewModelProviders.of(this).get(DetailsViewModel::class.java)
+
         val repo = intent.getParcelableExtra<Repo>(BUNDLE_KEY)
 
         // check repo data is available
@@ -36,8 +42,20 @@ class DetailsActivity : BaseActivity() {
             return
         }
 
+        (mViewModel as DetailsViewModel).mTopics.observe(this, Observer<List<String>> { topics -> updateTopics(topics) })
+
         // show repo data
         showRepoData(repo)
+
+        // fetch topics
+        (mViewModel as DetailsViewModel).getTopics(repo.full_name)
+    }
+
+    private fun updateTopics(topics: List<String>?) {
+        if (topics === null || topics.isEmpty()) {
+            return
+        }
+        Toast.makeText(this, topics.toString(), Toast.LENGTH_SHORT).show()
     }
 
     private fun showRepoData(repo: Repo) {
