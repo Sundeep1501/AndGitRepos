@@ -24,7 +24,7 @@ Developed using android architecture components
 - [Dagger 2](https://github.com/google/dagger)
 
 ### Caution
-- Some of the github APIs are still under development(as of 02/03/2018 02:21 AM) like to [render readme as html](https://github.com/google/go-github/issues/727) and [read topics](https://developer.github.com/v3/repos/#list-all-topics-for-a-repository) are used in the developement.
+- Some of the github APIs are still under development(as of 02/03/2018 02:21 AM) like to [render readme as html Open issue](https://github.com/google/go-github/issues/727) and [read topics](https://developer.github.com/v3/repos/#list-all-topics-for-a-repository) are used in the app.
 
 ## Authors
 
