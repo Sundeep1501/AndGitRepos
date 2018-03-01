@@ -25,6 +25,7 @@ Developed using android architecture components
 
 ### Caution
 - Some of the github APIs are still under development(as of 02/03/2018 02:21 AM) like to [render readme as html Open issue](https://github.com/google/go-github/issues/727) and [read topics](https://developer.github.com/v3/repos/#list-all-topics-for-a-repository) are used in the app.
+- As this apis are unauthenticated there is a rate limit per hour to fetch topics and contributors etc. [more](https://developer.github.com/v3/#rate-limiting). Tip: switch to mobile/wifi vice-versa as it changes the ip address. 
 
 ## Authors
 
