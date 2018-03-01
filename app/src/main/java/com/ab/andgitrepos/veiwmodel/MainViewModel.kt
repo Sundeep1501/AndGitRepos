@@ -3,8 +3,10 @@ package com.ab.andgitrepos.veiwmodel
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.MutableLiveData
+import android.content.Context
 import android.widget.Toast
 import com.ab.andgitrepos.MyApplication
+import com.ab.andgitrepos.R
 import com.ab.andgitrepos.datasource.retrofit.SearchClient
 import com.ab.andgitrepos.datasource.retrofit.model.Repo
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -55,10 +57,11 @@ open class MainViewModel(application: Application) : AndroidViewModel(applicatio
     }
 
     private fun handleAPIFailure(error: Throwable) {
+        val context = getApplication() as Context
         if (error is IOException) {
-            Toast.makeText(getApplication(), "No Internet.", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, context.getString(R.string.no_internet), Toast.LENGTH_LONG).show()
         } else {
-            Toast.makeText(getApplication(), "ERROR:" + error.message, Toast.LENGTH_LONG).show()
+            Toast.makeText(context, "ERROR:" + error.message, Toast.LENGTH_LONG).show()
         }
     }
 
