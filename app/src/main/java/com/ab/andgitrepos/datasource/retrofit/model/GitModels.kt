@@ -9,6 +9,7 @@ import android.os.Parcelable
 data class Repo(val id: Long, val name: String, val full_name: String, val description: String?,
                 val language: String, val stargazers_count: Int, val forks_count: Int,
                 val watchers_count: Int, val open_issues_count: Int, val clone_url: String,
+                val homepage: String?,
                 val owner: Owner, val license: License?) : Parcelable {
     constructor(parcel: Parcel) : this(
             parcel.readLong(),
@@ -20,6 +21,7 @@ data class Repo(val id: Long, val name: String, val full_name: String, val descr
             parcel.readInt(),
             parcel.readInt(),
             parcel.readInt(),
+            parcel.readString(),
             parcel.readString(),
             parcel.readParcelable(Owner::class.java.classLoader),
             parcel.readParcelable(License::class.java.classLoader)) {
@@ -36,6 +38,7 @@ data class Repo(val id: Long, val name: String, val full_name: String, val descr
         parcel.writeInt(watchers_count)
         parcel.writeInt(open_issues_count)
         parcel.writeString(clone_url)
+        parcel.writeString(homepage)
         parcel.writeParcelable(owner, flags)
         parcel.writeParcelable(license, flags)
     }

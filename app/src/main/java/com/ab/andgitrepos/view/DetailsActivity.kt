@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -76,12 +77,15 @@ class DetailsActivity : BaseActivity() {
             } else {
                 break
             }
-        Toast.makeText(this, topics.toString(), Toast.LENGTH_SHORT).show()
     }
 
     private fun showRepoData(repo: Repo) {
         fullname.text = repo.full_name
+
         description.text = repo.description
+        if (!TextUtils.isEmpty(repo.homepage)) {
+            description.text = description.text.toString() + " " + repo.homepage
+        }
         watch.text = repo.watchers_count.toString()
         stars.text = repo.stargazers_count.toString()
         forks.text = repo.forks_count.toString()
