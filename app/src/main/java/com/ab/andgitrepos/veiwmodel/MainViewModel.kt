@@ -31,9 +31,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun getAndroidRepos() {
-        // get yesterday's date
+        // get day before yesterday's date
         val cal = Calendar.getInstance()
-        cal.add(Calendar.DATE, -1)
+        cal.add(Calendar.DATE, -2)
         val format = YYYYMMDD_FORMAT.format(cal.time)
 
         // prepare query map

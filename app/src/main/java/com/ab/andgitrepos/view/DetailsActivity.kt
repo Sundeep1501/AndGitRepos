@@ -7,12 +7,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.ab.andgitrepos.R
 import com.ab.andgitrepos.datasource.retrofit.model.Contributor
 import com.ab.andgitrepos.datasource.retrofit.model.Repo
 import com.ab.andgitrepos.veiwmodel.DetailsViewModel
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_details.*
 
 class DetailsActivity : BaseActivity() {
@@ -66,16 +68,33 @@ class DetailsActivity : BaseActivity() {
             return
         }
 
-        Toast.makeText(this, contributors.size.toString(), Toast.LENGTH_SHORT).show()
+        // TODO we are showing only 5 contributors as now. We might need horizontal recyclerview to show all contributors
+        for (i in 0..4) {
+            if (i > contributors.size - 1) {
+                break
+            }
+
+            val contributor = contributors[i]
+
+            // inflate imageview to show contributor avatar
+            val imageView: ImageView = layoutInflater.inflate(R.layout.view_contributor, contributors_layout, false) as ImageView
+            imageView.tag = contributor.login
+            imageView.setOnClickListener(contributorClickListener)
+
+            // add inflated view to the layout
+            contributors_layout.addView(imageView)
+
+            // load avatar into the imageview
+            Glide.with(this).load(contributor.avatar_url).into(imageView)
+        }
     }
 
     private fun updateTopics(topics: List<String>?) {
         if (topics == null || topics.isEmpty()) {
             return
         }
-        /*
-         * TODO if we need to more/all topics, Better we implement our own flow layout(View group) to add items dynamically.
-         */
+
+        //TODO if we need to more/all topics, Better we implement our own flow layout(View group) to add items dynamically.
         for (i in 0..4)
             if (topics.size > i) {
                 val s = topics[i]
@@ -108,5 +127,13 @@ class DetailsActivity : BaseActivity() {
         language.text = repo.language
         open_issues.text = repo.open_issues_count.toString()
         clone_url.text = repo.clone_url
+    }
+
+    /**
+     * handles the contributor image click listener
+     */
+    private val contributorClickListener: View.OnClickListener = View.OnClickListener { p0 ->
+        // show tag which has login name of contributor
+        Toast.makeText(this@DetailsActivity, p0!!.tag.toString(), Toast.LENGTH_SHORT).show()
     }
 }
