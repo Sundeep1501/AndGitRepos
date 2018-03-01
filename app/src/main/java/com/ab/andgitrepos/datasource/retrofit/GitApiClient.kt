@@ -1,5 +1,6 @@
 package com.ab.andgitrepos.datasource.retrofit
 
+import com.ab.andgitrepos.datasource.retrofit.model.Contributor
 import com.ab.andgitrepos.datasource.retrofit.model.RepoTopicsResponse
 import com.ab.andgitrepos.datasource.retrofit.model.SearchResponse
 import io.reactivex.Observable
@@ -29,4 +30,10 @@ interface GitApiClient {
     @GET("repos/{repoFullName}/topics")
     @Headers("Accept: application/vnd.github.mercy-preview+json")
     fun getRepoTopics(@Path("repoFullName", encoded = true) repoFullName: String): Observable<RepoTopicsResponse>
+
+    /**
+     *
+     */
+    @GET("repos/{repoFullName}/contributors")
+    fun getContributors(@Path("repoFullName", encoded = true) repoFullName: String): Observable<List<Contributor>>
 }

@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import com.ab.andgitrepos.R
+import com.ab.andgitrepos.datasource.retrofit.model.Contributor
 import com.ab.andgitrepos.datasource.retrofit.model.Repo
 import com.ab.andgitrepos.veiwmodel.DetailsViewModel
 import kotlinx.android.synthetic.main.activity_details.*
@@ -45,13 +46,27 @@ class DetailsActivity : BaseActivity() {
             return
         }
 
-        (mViewModel as DetailsViewModel).mTopics.observe(this, Observer<List<String>> { topics -> updateTopics(topics) })
+        val detailsViewModel = mViewModel as DetailsViewModel
+        detailsViewModel.mTopics.observe(this, Observer<List<String>> { topics -> updateTopics(topics) })
+        detailsViewModel.mContributors.observe(this, Observer<List<Contributor>> { topics -> updateContributors(topics) })
 
         // show repo data
         showRepoData(repo)
 
         // fetch topics
-        (mViewModel as DetailsViewModel).getTopics(repo.full_name)
+        detailsViewModel.getTopics(repo.full_name)
+
+        // fetch contributors
+        detailsViewModel.getContributors(repo.full_name)
+    }
+
+    private fun updateContributors(contributors: List<Contributor>?) {
+        //TODO repo will have at least a single contributor. Do we need this condition check?
+        if (contributors == null || contributors.isEmpty()) {
+            return
+        }
+
+        Toast.makeText(this, contributors.size.toString(), Toast.LENGTH_SHORT).show()
     }
 
     private fun updateTopics(topics: List<String>?) {

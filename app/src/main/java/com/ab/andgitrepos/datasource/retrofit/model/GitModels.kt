@@ -124,3 +124,5 @@ data class SearchResponse(val items: List<Repo>)
  * Repo's topics response model
  */
 data class RepoTopicsResponse(val names: List<String>)
+
+data class Contributor(val login: String, val avatar_url: String)
