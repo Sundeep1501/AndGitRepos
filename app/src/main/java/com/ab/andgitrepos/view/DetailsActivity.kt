@@ -129,7 +129,7 @@ class DetailsActivity : BaseActivity() {
         clone_url.text = repo.clone_url
         val name = repo.license?.name
         if (name.isNullOrEmpty()) {
-            license.text = "NA"
+            license.text = getString(R.string.na)
         } else {
             license.text = name
         }
