@@ -83,6 +83,7 @@ class DetailsActivity : BaseActivity() {
         fullname.text = repo.full_name
 
         description.text = repo.description
+        // some repos does not have home page urls. 
         if (!TextUtils.isEmpty(repo.homepage)) {
             description.text = description.text.toString() + " " + repo.homepage
         }
