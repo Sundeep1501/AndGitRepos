@@ -7,7 +7,7 @@ import android.content.Context
 import android.widget.Toast
 import com.ab.andgitrepos.MyApplication
 import com.ab.andgitrepos.R
-import com.ab.andgitrepos.datasource.retrofit.SearchClient
+import com.ab.andgitrepos.datasource.retrofit.GitApiClient
 import com.ab.andgitrepos.datasource.retrofit.model.Repo
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -22,7 +22,7 @@ import kotlin.collections.ArrayList
  */
 open class MainViewModel(application: Application) : AndroidViewModel(application) {
 
-    @Inject lateinit var mSearchClient: SearchClient
+    @Inject lateinit var mGitApiClient: GitApiClient
 
     val mRepos: MutableLiveData<List<Repo>> = MutableLiveData()
 
@@ -42,7 +42,7 @@ open class MainViewModel(application: Application) : AndroidViewModel(applicatio
         searchQueryMap.put("sort", "stars")
         searchQueryMap.put("order", "desc")
 
-        mSearchClient.searchRepositories(searchQueryMap)
+        mGitApiClient.searchRepositories(searchQueryMap)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(

@@ -43,5 +43,11 @@ class DetailsActivity : BaseActivity() {
     private fun showRepoData(repo: Repo) {
         fullname.text = repo.full_name
         description.text = repo.description
+        watch.text = repo.watchers_count.toString()
+        stars.text = repo.stargazers_count.toString()
+        forks.text = repo.forks_count.toString()
+        language.text = repo.language
+        open_issues.text = repo.open_issues_count.toString()
+        clone_url.text = repo.clone_url
     }
 }
