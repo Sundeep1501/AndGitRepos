@@ -5,6 +5,8 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import com.ab.andgitrepos.R
 import com.ab.andgitrepos.datasource.retrofit.model.Repo
@@ -55,26 +57,22 @@ class DetailsActivity : BaseActivity() {
         if (topics == null || topics.isEmpty()) {
             return
         }
+        /*
+         * TODO if we need to more/all topics, Better we implement our own flow layout(View group) to add items dynamically.
+         */
         for (i in 0..4)
             if (topics.size > i) {
                 val s = topics[i]
+                var view: TextView? = null
                 when (i) {
-                    0 -> {
-                        topic1.text = s
-                    }
-                    1 -> {
-                        topic2.text = s
-                    }
-                    2 -> {
-                        topic3.text = s
-                    }
-                    3 -> {
-                        topic4.text = s
-                    }
-                    4 -> {
-                        topic5.text = s
-                    }
+                    0 -> view = topic1
+                    1 -> view = topic2
+                    2 -> view = topic3
+                    3 -> view = topic4
+                    4 -> view = topic5
                 }
+                view!!.text = s
+                view.visibility = View.VISIBLE
             } else {
                 break
             }
